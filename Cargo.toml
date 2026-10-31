@@ -1,0 +1,24 @@
+[package]
+name = "lanvc"
+version = "0.1.0"
+edition = "2021"
+description = "LAN voice chat: zero-config single-room Ogg Vorbis over UDP"
+
+[build-dependencies]
+cc = "1"
+
+[dependencies]
+anyhow = "1"
+chacha20poly1305 = { version = "0.10", features = ["std"] }
+eframe = "0.27"
+sha1 = "0.10"
+sha2 = "0.10"
+tungstenite = { version = "0.21", features = ["rustls-tls-webpki-roots"] }
+
+[target.'cfg(windows)'.dependencies]
+cpal = "0.15"
+
+[profile.release]
+opt-level = 2
+lto = "thin"
+strip = true
